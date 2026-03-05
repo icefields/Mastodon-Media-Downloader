@@ -26,7 +26,7 @@ from datetime import datetime
 class MastodonMediaDownloader:
     """Download media from a Mastodon account using public API."""
     
-    def __init__(self, account_url, output_dir="/mnt/MidoriNC/Photos/posts"):
+    def __init__(self, account_url, output_dir="~/Pictures/posts"):
         self.account_url = account_url
         self.output_dir = Path(output_dir)
         self.session = requests.Session()
