@@ -7,7 +7,6 @@ Usage:
     python3 download_mastodon_media.py <mastodon_url> [--output-dir DIR]
 
 Example:
-    python3 download_mastodon_media.py https://todon.nl/@AnarchistArt@mastodon.social
     python3 download_mastodon_media.py https://mastodon.social/@username --output-dir /path/to/save
 """
 
@@ -26,7 +25,7 @@ from datetime import datetime
 class MastodonMediaDownloader:
     """Download media from a Mastodon account using public API."""
     
-    def __init__(self, account_url, output_dir="~/Pictures/posts"):
+    def __init__(self, account_url, output_dir="~/Downloads"):
         self.account_url = account_url
         self.output_dir = Path(output_dir)
         self.session = requests.Session()
@@ -306,14 +305,13 @@ def main():
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog="""
 Examples:
-    python3 download_mastodon_media.py https://mastodon.social/@username
-    python3 download_mastodon_media.py https://todon.nl/@AnarchistArt@mastodon.social
+    python3 download_mastodon_media.py https://mastodon.social/@username@instance.social
     python3 download_mastodon_media.py https://pixelfed.social/@username --output-dir ./downloads
         """
     )
     parser.add_argument('url', help='Mastodon account URL')
-    parser.add_argument('--output-dir', '-o', default='/mnt/MidoriNC/Photos/posts',
-                        help='Output directory for downloaded media (default: /mnt/MidoriNC/Photos/posts)')
+    parser.add_argument('--output-dir', '-o', default="~/Downloads",
+                        help='Output directory for downloaded media (default: ~/Downloads)')
     parser.add_argument('--limit', '-l', type=int, default=None,
                         help='Limit number of statuses to check (default: all)')
     parser.add_argument('--include-non-media', action='store_true',
